@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peliculas</title>
+</head>
+<body>
+    <ul>
+        <li><a href="{% url 'home' %}">Inicio</a></li>
+        <li><a href="{% url 'signup' %}">Registro</a></li>
+        <li><a href="{% url 'peliculas' %}">Películas</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'signout' %}">Cerrar Sesión</a></li>
+        {% else %}
+            <li><a href="{% url 'signin' %}">Iniciar Sesión</a></li>
+        {% endif %}
+    </ul>
+    {% block content %}
+    
+    {% endblock %}
+
+
+
+
+</body>
+</htm>

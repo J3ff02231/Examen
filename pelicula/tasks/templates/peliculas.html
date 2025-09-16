@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Registro de Películas</h1>
+
+<a href="{% url 'crear_pelicula' %}">Agregar película</a>
+
+<ul>
+{% for pelicula in peliculas %}
+    <li>
+        {% if pelicula.destacada %}
+            <strong>{{ pelicula.titulo }}</strong>
+        {% else %}
+            {{ pelicula.titulo }}
+        {% endif %}
+        
+        <p><strong>Descripción:</strong> {{ pelicula.descripcion }}</p>
+        <p><strong>Director:</strong> {{ pelicula.director }}</p>
+        <p><strong>Año:</strong> {{ pelicula.anio }}</p>
+        <p><strong>Registrado por:</strong> {{ pelicula.user.username }}</p>
+
+        <a href="{% url 'editar_pelicula' pelicula.id %}">Editar</a> |
+        <a href="{% url 'eliminar_pelicula' pelicula.id %}">Eliminar</a>
+    </li>
+{% empty %}
+    <p>No hay películas registradas.</p>
+{% endfor %}
+</ul>
+{% endblock %}
